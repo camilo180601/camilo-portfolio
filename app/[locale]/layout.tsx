@@ -3,6 +3,7 @@ import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { locales, isLocale, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
+import { profile } from "@/lib/profile";
 import { Analytics } from "@vercel/analytics/next"
 import "../globals.css";
 
@@ -28,17 +29,48 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const dict = getDictionary(locale);
+  const { title, description, keywords } = dict.meta;
+
   return {
-    title: dict.meta.title,
-    description: dict.meta.description,
+    metadataBase: new URL(profile.siteUrl),
+    title,
+    description,
+    keywords,
+    authors: [{ name: "Camilo Alejandro López", url: profile.github }],
+    creator: "Camilo Alejandro López",
+    publisher: "Camilo Alejandro López",
+    category: "technology",
     alternates: {
-      languages: { es: "/es", en: "/en" },
+      canonical: `/${locale}`,
+      languages: { es: "/es", en: "/en", "x-default": "/" },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
     openGraph: {
-      title: dict.meta.title,
-      description: dict.meta.description,
       type: "website",
+      url: `/${locale}`,
+      siteName: "Camilo López · Portfolio",
+      title,
+      description,
       locale: locale === "es" ? "es_CO" : "en_US",
+      alternateLocale: locale === "es" ? ["en_US"] : ["es_CO"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    verification: {
+      google: "D0q4a6Me0HLiW4fIUqpMeIi4Ob_bRCWqRNiJ8u_m9b4",
     },
   };
 }

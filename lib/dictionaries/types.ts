@@ -26,6 +26,7 @@ export interface Dictionary {
   meta: {
     title: string;
     description: string;
+    keywords: string[];
   };
   nav: {
     about: string;

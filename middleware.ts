@@ -28,5 +28,5 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Skip static assets, API routes and Next.js internals
-  matcher: ["/((?!_next|api|cv|.*\\..*).*)"],
+  matcher: ["/((?!_next|api|cv|icon|apple-icon|.*\\..*).*)"],
 };

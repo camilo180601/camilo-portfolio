@@ -2,9 +2,29 @@ import type { Dictionary } from "./types";
 
 export const es: Dictionary = {
   meta: {
-    title: "Camilo López · Desarrollador Fullstack | Next.js · React · .NET",
+    title: "Camilo López · Desarrollador Web Fullstack | Frontend & Backend",
     description:
-      "Desarrollador Fullstack con más de 3 años de experiencia construyendo productos web de alto rendimiento para marcas internacionales. Next.js, React, Angular, .NET, Laravel y AWS.",
+      "Desarrollador fullstack en Bogotá, Colombia con +3 años creando páginas web y aplicaciones de alto rendimiento. Frontend con Next.js, React y Angular; backend con .NET, Node.js y Laravel. Desarrollo web a medida, rápido, escalable y optimizado para SEO.",
+    keywords: [
+      "desarrollador web",
+      "desarrollador fullstack",
+      "desarrollador frontend",
+      "desarrollador backend",
+      "desarrollo de páginas web",
+      "crear página web",
+      "desarrollo de aplicaciones web",
+      "programador web",
+      "desarrollador Next.js",
+      "desarrollador React",
+      "desarrollador Angular",
+      "desarrollador .NET",
+      "desarrollador Node.js",
+      "desarrollador Laravel",
+      "desarrollador web Bogotá",
+      "desarrollador web Colombia",
+      "desarrollador web freelance",
+      "Camilo López desarrollador",
+    ],
   },
   nav: {
     about: "Sobre mí",

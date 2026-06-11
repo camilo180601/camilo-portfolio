@@ -2,9 +2,29 @@ import type { Dictionary } from "./types";
 
 export const en: Dictionary = {
   meta: {
-    title: "Camilo López · Fullstack Developer | Next.js · React · .NET",
+    title: "Camilo López · Fullstack Web Developer | Frontend & Backend",
     description:
-      "Fullstack Developer with 3+ years of experience building high-performance web products for international brands. Next.js, React, Angular, .NET, Laravel and AWS.",
+      "Fullstack web developer based in Bogotá, Colombia with 3+ years building high-performance websites and web applications. Frontend with Next.js, React and Angular; backend with .NET, Node.js and Laravel. Custom, fast, scalable and SEO-optimized web development.",
+    keywords: [
+      "web developer",
+      "fullstack developer",
+      "frontend developer",
+      "backend developer",
+      "web development",
+      "website development",
+      "web application development",
+      "web programmer",
+      "Next.js developer",
+      "React developer",
+      "Angular developer",
+      ".NET developer",
+      "Node.js developer",
+      "Laravel developer",
+      "web developer Bogotá",
+      "web developer Colombia",
+      "freelance web developer",
+      "Camilo López developer",
+    ],
   },
   nav: {
     about: "About",
