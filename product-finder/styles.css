@@ -1,0 +1,267 @@
+/* ============================
+   PALETA Y TIPOGRAFÍA BASE
+   ============================ */
+
+:root {
+  /* Colores de la guía Positivus */
+  --green: #B9FF66;
+  --dark:  #191A23;
+  --light: #F3F3F3;
+  --white: #FFFFFF;
+}
+
+/* 
+ * Body general
+ * Fondo gris claro y tipografía limpia similar a Positivus.
+ */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--light);
+  color: var(--dark);
+}
+
+/* 
+ * Limitamos el ancho del contenido para que se vea como una landing centrada.
+ * Aplica tanto al header como al main.
+ */
+.header,
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* ============================
+   HEADER / HERO
+   ============================ */
+
+/* 
+ * Header superior, tipo hero compacto:
+ * queda sobre un fondo gris con separación del resto.
+ */
+.header {
+  padding: 32px 20px 16px;
+  background: var(--light);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* Contenedor interno para poder usar columnas si lo necesitas después */
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Título principal (H1) al estilo del hero de Positivus */
+.header h1 {
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 700;
+  margin: 0;
+}
+/* Texto descriptivo opcional (si lo agregas debajo del H1) */
+.header p {
+  margin: 8px 0 0;
+  font-size: 14px;
+  max-width: 440px;
+  color: #555;
+}
+
+/* 
+ * Wrapper para el input, así se comporta como el campo grande del hero.
+ */
+.search-wrapper {
+  margin-top: 16px;
+}
+
+/* 
+ * Campo de búsqueda: pill, borde dark y highlight verde al hacer focus.
+ */
+.search {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--dark);
+  background: var(--white);
+  margin-top: 0;
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.search:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba(185, 255, 102, 0.55);
+  transform: translateY(-1px);
+}
+
+/* ============================
+   GRID DE PRODUCTOS
+   ============================ */
+
+/* 
+ * Grid responsive con espacio generoso tipo cards.
+ */
+.grid {
+  padding: 24px 20px 40px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* 
+ * Card de producto:
+ * - Bordes MUY redondeados (como en “Services”)
+ * - Borde oscuro
+ * - Fondo blanco por defecto
+ * - Sombra suave
+ */
+.card {
+  background: var(--white);
+  border-radius: 32px;
+  border: 1px solid var(--dark);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--dark);
+  overflow: hidden;
+}
+/* 
+ * Imagen enmarcada en una “tarjeta interna” gris claro al estilo de los
+ * dibujos de la landing.
+ */
+.card img {
+  display: block;
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  background: var(--light);
+  border-radius: 24px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+/* 
+ * Título del producto: simulamos un H3 Positivus.
+ */
+.card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 4px 0 0;
+  height: 48px;       /* limita el alto para títulos muy largos */
+  overflow: hidden;
+}
+
+/* 
+ * Precio u otro texto principal del producto.
+ * Lo destacamos en verde para mantener el acento de marca.
+ */
+.card p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+/* Botón tipo “Learn more” (por si lo agregas dentro de la card) */
+.card .card-cta {
+  margin-top: 10px;
+  align-self: flex-start;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background: var(--dark);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Variante de card con fondo verde (si quieres alternarlas) */
+.card--accent {
+  background: var(--green);
+}
+
+/* ============================
+   ESTADO DE ERROR
+   ============================ */
+
+.error {
+  color: #FF4B4B;
+  text-align: center;
+  padding: 0 20px 24px;
+  font-weight: 500;
+}
+
+/* ============================
+   SKELETON LOADER
+   ============================ */
+
+/* 
+ * Usamos el mismo layout del grid para que al cargar parezca
+ * que ya están las tarjetas colocadas.
+ */
+.skeleton-container {
+  display: grid;
+  padding: 24px 20px 0;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* 
+ * Cada skeleton imita el tamaño y radio de una card real.
+ */
+.skeleton {
+  height: 260px;
+  border-radius: 32px;
+  position: relative;
+  overflow: hidden;
+  background: #E5E5E5;
+}
+
+/* 
+ * Efecto shimmer que recorre la tarjeta de izquierda a derecha.
+ */
+.skeleton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150px;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(90deg, transparent, #FFFFFF, transparent);
+  opacity: 0.6;
+  animation: loading 1.2s infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(420px);
+  }
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+
+@media (max-width: 768px) {
+  .header {
+    padding: 20px 16px 12px;
+  }
+
+  .grid,
+  .skeleton-container {
+    padding: 20px 16px 32px;
+    gap: 16px;
+  }
+
+  .header h1 {
+    font-size: 28px;
+  }
+}

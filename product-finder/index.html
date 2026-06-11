@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Búsqueda de Productos</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <span class="section-label">Productos</span>
+        <h1>Encuentra tu producto perfecto</h1>
+        <p>Busca y compara productos en tiempo real usando nuestra búsqueda inteligente.</p>
+
+        <div class="search-wrapper">
+          <input
+            type="text"
+            id="searchInput"
+            class="search"
+            placeholder="Buscar productos..."
+          />
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div id="productList" class="grid"></div>
+      <div id="loading" class="skeleton-container"></div>
+      <p id="error" class="error"></p>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
