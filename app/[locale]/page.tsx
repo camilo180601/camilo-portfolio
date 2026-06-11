@@ -25,7 +25,7 @@ export default async function Home({
     <main className="relative">
       <Spotlight />
       <Navbar locale={locale} nav={dict.nav} />
-      <Hero hero={dict.hero} />
+      <Hero hero={dict.hero} locale={locale} />
       <Marquee />
       <About about={dict.about} />
       <Experience experience={dict.experience} />

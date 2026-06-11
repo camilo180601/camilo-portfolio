@@ -1,9 +1,16 @@
 import type { Dictionary } from "@/lib/dictionaries";
+import type { Locale } from "@/lib/i18n";
 import { profile } from "@/lib/profile";
 import Typewriter from "./Typewriter";
 import Reveal from "./Reveal";
 
-export default function Hero({ hero }: { hero: Dictionary["hero"] }) {
+export default function Hero({
+  hero,
+  locale,
+}: {
+  hero: Dictionary["hero"];
+  locale: Locale;
+}) {
   return (
     <section id="top" className="relative flex min-h-screen items-center overflow-hidden">
       <div className="aurora aurora-1 left-[-10%] top-[-10%]" />
@@ -62,7 +69,7 @@ export default function Hero({ hero }: { hero: Dictionary["hero"] }) {
               {hero.ctaContact}
             </a>
             <a
-              href={profile.cvPath}
+              href={profile.cvPath[locale]}
               download
               className="link-underline inline-flex items-center gap-2 px-2 py-3 text-sm font-medium text-muted transition-colors hover:text-white"
             >
