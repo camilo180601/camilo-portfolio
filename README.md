@@ -32,4 +32,4 @@ product-finder/      Legacy project preserved (vanilla JS product listing tool)
 
 ## Deploy
 
-Deployed on [Vercel](https://vercel.com).
+Deployed on [Vercel](https://vercel.com). [Go to Link](https://camilo-portfolio-dev.vercel.app/).
