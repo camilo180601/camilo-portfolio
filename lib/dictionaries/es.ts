@@ -67,19 +67,6 @@ export const es: Dictionary = {
     title: "Experiencia profesional",
     jobs: [
       {
-        role: "Desarrollador Front-End",
-        company: "Havas Colombia",
-        period: "Dic 2025 — May 2026",
-        location: "Bogotá D.C.",
-        points: [
-          "Desarrollo y mantenimiento de co.thebar.com, plataforma multimarca que integra 5 marcas premium de spirits (Smirnoff, Don Julio, Old Parr, Baileys y Buchanan's) bajo una sola arquitectura Next.js (App Router) + TypeScript.",
-          "Implementación del sitio de Buchanan's con .NET y CMS Umbraco: plantillas, document types y componentes para que marketing administre contenido de forma autónoma.",
-          "Componentes reutilizables y pixel perfect desde prototipos Figma, con verificación de edad, personalización regional y rutas dinámicas por marca.",
-          "Mejora de Core Web Vitals (LCP, CLS, TBT) en landing pages con apoyo de herramientas de IA.",
-        ],
-        tech: ["Next.js", "TypeScript", ".NET", "Umbraco", "Figma"],
-      },
-      {
         role: "Ingeniero de Software Fullstack",
         company: "Espacio RH LATAM",
         period: "Oct 2022 — Presente",
@@ -91,6 +78,19 @@ export const es: Dictionary = {
           "Despliegue y administración en AWS EC2 (Linux) con MySQL y SQL Server; integraciones vía APIs REST y SOAP.",
         ],
         tech: ["Laravel", "Angular", "Next.js", "AWS EC2", "MySQL", "SQL Server"],
+      },
+      {
+        role: "Desarrollador Front-End",
+        company: "Havas Colombia",
+        period: "Dic 2025 — May 2026",
+        location: "Bogotá D.C.",
+        points: [
+          "Desarrollo y mantenimiento de co.thebar.com, plataforma multimarca que integra 5 marcas premium de spirits (Smirnoff, Don Julio, Old Parr, Baileys y Buchanan's) bajo una sola arquitectura Next.js (App Router) + TypeScript.",
+          "Implementación del sitio de Buchanan's con .NET y CMS Umbraco: plantillas, document types y componentes para que marketing administre contenido de forma autónoma.",
+          "Componentes reutilizables y pixel perfect desde prototipos Figma, con verificación de edad, personalización regional y rutas dinámicas por marca.",
+          "Mejora de Core Web Vitals (LCP, CLS, TBT) en landing pages con apoyo de herramientas de IA.",
+        ],
+        tech: ["Next.js", "TypeScript", ".NET", "Umbraco", "Figma"],
       },
       {
         role: "Ingeniero de Desarrollo",

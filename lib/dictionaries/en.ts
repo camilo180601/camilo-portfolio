@@ -67,19 +67,6 @@ export const en: Dictionary = {
     title: "Professional experience",
     jobs: [
       {
-        role: "Front-End Developer",
-        company: "Havas Colombia",
-        period: "Dec 2025 — May 2026",
-        location: "Bogotá D.C.",
-        points: [
-          "Built and maintained co.thebar.com, a multi-brand platform integrating 5 premium spirits brands (Smirnoff, Don Julio, Old Parr, Baileys and Buchanan's) under a single Next.js (App Router) + TypeScript architecture.",
-          "Implemented the Buchanan's website with .NET and Umbraco CMS: templates, document types and components so the marketing team manages content autonomously.",
-          "Reusable, pixel-perfect components from Figma prototypes, with age gating, regional personalization and per-brand dynamic routing.",
-          "Improved Core Web Vitals (LCP, CLS, TBT) on landing pages with AI-assisted tooling.",
-        ],
-        tech: ["Next.js", "TypeScript", ".NET", "Umbraco", "Figma"],
-      },
-      {
         role: "Fullstack Software Engineer",
         company: "Espacio RH LATAM",
         period: "Oct 2022 — Present",
@@ -91,6 +78,19 @@ export const en: Dictionary = {
           "Deployment and operations on AWS EC2 (Linux) with MySQL and SQL Server; REST and SOAP API integrations.",
         ],
         tech: ["Laravel", "Angular", "Next.js", "AWS EC2", "MySQL", "SQL Server"],
+      },
+      {
+        role: "Front-End Developer",
+        company: "Havas Colombia",
+        period: "Dec 2025 — May 2026",
+        location: "Bogotá D.C.",
+        points: [
+          "Built and maintained co.thebar.com, a multi-brand platform integrating 5 premium spirits brands (Smirnoff, Don Julio, Old Parr, Baileys and Buchanan's) under a single Next.js (App Router) + TypeScript architecture.",
+          "Implemented the Buchanan's website with .NET and Umbraco CMS: templates, document types and components so the marketing team manages content autonomously.",
+          "Reusable, pixel-perfect components from Figma prototypes, with age gating, regional personalization and per-brand dynamic routing.",
+          "Improved Core Web Vitals (LCP, CLS, TBT) on landing pages with AI-assisted tooling.",
+        ],
+        tech: ["Next.js", "TypeScript", ".NET", "Umbraco", "Figma"],
       },
       {
         role: "Development Engineer",
