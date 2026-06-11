@@ -1,7 +1,7 @@
 import type { Locale } from "./i18n";
 
 export const profile = {
-  siteUrl: "https://camilo-portfolio-cyan.vercel.app",
+  siteUrl: "https://camilo-portfolio-dev.vercel.app",
   email: "camilo06180401@gmail.com",
   phone: "+573204458519",
   github: "https://github.com/camilo180601",

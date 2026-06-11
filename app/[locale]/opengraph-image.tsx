@@ -74,7 +74,7 @@ export default async function Image({
           Next.js · React · Angular · .NET · Node.js · Laravel · AWS
         </div>
         <div style={{ marginTop: 60, fontSize: 26, color: "#6b7280" }}>
-          camilo-portfolio-cyan.vercel.app
+          camilo-portfolio-dev.vercel.app
         </div>
       </div>
     ),
