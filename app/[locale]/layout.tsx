@@ -3,6 +3,7 @@ import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { locales, isLocale, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
+import { Analytics } from "@vercel/analytics/next"
 import "../globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -54,6 +55,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale as Locale}>
+      <Analytics />
       <body
         className={`${spaceGrotesk.variable} ${jetbrains.variable} antialiased`}
       >
