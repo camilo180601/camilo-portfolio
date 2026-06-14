@@ -79,6 +79,7 @@ export default async function Home({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script src="https://crm-hub-api.onrender.com/api/webchat/widget.js?ch=1" async></script>
       <Spotlight />
       <Navbar locale={locale} nav={dict.nav} />
       <Hero hero={dict.hero} locale={locale} />
