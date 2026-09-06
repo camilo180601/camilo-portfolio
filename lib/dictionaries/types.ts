@@ -57,6 +57,7 @@ export interface Dictionary {
     title: string;
     eyebrow: string;
     jobs: Job[];
+    details: string;
   };
   projects: {
     title: string;

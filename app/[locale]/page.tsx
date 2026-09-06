@@ -2,10 +2,8 @@ import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import { profile } from "@/lib/profile";
-import Spotlight from "@/components/Spotlight";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
@@ -40,23 +38,7 @@ export default async function Home({
           addressCountry: "CO",
         },
         sameAs: [profile.github, profile.linkedin],
-        knowsAbout: [
-          "Next.js",
-          "React",
-          "Angular",
-          "Vue.js",
-          "TypeScript",
-          "JavaScript",
-          ".NET",
-          "Node.js",
-          "Laravel",
-          "PHP",
-          "AWS",
-          "MySQL",
-          "SQL Server",
-          "SEO",
-          "Core Web Vitals",
-        ],
+        knowsAbout: dict.skills.groups.flatMap((group) => group.items),
         alumniOf: {
           "@type": "CollegeOrUniversity",
           name: "Universidad Militar Nueva Granada",
@@ -74,22 +56,25 @@ export default async function Home({
   };
 
   return (
-    <main className="relative">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <script src="https://crm-hub-api.onrender.com/api/webchat/widget.js?ch=1" async></script>
-      <Spotlight />
+    <>
       <Navbar locale={locale} nav={dict.nav} />
-      <Hero hero={dict.hero} locale={locale} />
-      <Marquee />
-      <About about={dict.about} />
-      <Experience experience={dict.experience} />
-      <Projects projects={dict.projects} />
-      <Skills skills={dict.skills} />
-      <Contact contact={dict.contact} />
+      <main id="main-content" tabIndex={-1}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          src="https://crm-hub-api.onrender.com/api/webchat/widget.js?ch=1"
+          async
+        ></script>
+        <Hero hero={dict.hero} locale={locale} />
+        <Projects projects={dict.projects} />
+        <About about={dict.about} />
+        <Experience experience={dict.experience} />
+        <Skills skills={dict.skills} />
+        <Contact contact={dict.contact} />
+      </main>
       <Footer footer={dict.footer} />
-    </main>
+    </>
   );
 }

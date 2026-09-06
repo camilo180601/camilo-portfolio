@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { isLocale, defaultLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 
-export const alt = "Camilo López · Fullstack Developer";
+export const alt = "Camilo López · Software Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -13,71 +13,59 @@ export default async function Image({
 }) {
   const { locale } = await params;
   const dict = getDictionary(isLocale(locale) ? locale : defaultLocale);
-
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: "60px 72px",
+        backgroundColor: "#f7f6f2",
+        color: "#292823",
+        fontFamily: "sans-serif",
+      }}
+    >
       <div
         style={{
-          width: "100%",
-          height: "100%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "80px",
-          backgroundColor: "#0a0a0f",
-          backgroundImage:
-            "radial-gradient(circle at 15% 20%, rgba(34,211,238,0.25), transparent 45%), radial-gradient(circle at 85% 80%, rgba(167,139,250,0.25), transparent 45%)",
-          fontFamily: "sans-serif",
+          justifyContent: "space-between",
+          fontSize: 23,
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-            color: "#34d399",
-            fontSize: 28,
-          }}
-        >
-          <div
-            style={{
-              width: 12,
-              height: 12,
-              borderRadius: "50%",
-              backgroundColor: "#34d399",
-            }}
-          />
-          {dict.hero.badge}
-        </div>
-        <div
-          style={{
-            marginTop: 28,
-            fontSize: 96,
-            fontWeight: 700,
-            color: "#ffffff",
-            letterSpacing: "-3px",
-          }}
-        >
-          Camilo López
-        </div>
-        <div
-          style={{
-            marginTop: 16,
-            fontSize: 44,
-            color: "#22d3ee",
-            fontWeight: 600,
-          }}
-        >
-          {dict.hero.roles[0]} · Frontend & Backend
-        </div>
-        <div style={{ marginTop: 24, fontSize: 30, color: "#9ca3af" }}>
-          Next.js · React · Angular · .NET · Node.js · Laravel · AWS
-        </div>
-        <div style={{ marginTop: 60, fontSize: 26, color: "#6b7280" }}>
-          camilo-portfolio-dev.vercel.app
-        </div>
+        <span style={{ color: "#a44630", fontWeight: 700 }}>cl.</span>
+        <span>{dict.hero.roles[0]}</span>
       </div>
-    ),
-    { ...size }
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          fontSize: 124,
+          lineHeight: 0.98,
+          fontWeight: 600,
+          letterSpacing: "-8px",
+        }}
+      >
+        <span>Camilo</span>
+        <span style={{ display: "flex" }}>
+          López<span style={{ color: "#a44630" }}>.</span>
+        </span>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          borderTop: "1px solid #d6d2c9",
+          paddingTop: 24,
+          fontSize: 21,
+          color: "#66645d",
+        }}
+      >
+        <span>Angular / .NET / Java / Spring Boot</span>
+        <span>Bogotá, Colombia</span>
+      </div>
+    </div>,
+    { ...size },
   );
 }

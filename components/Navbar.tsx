@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { ArrowUpRight, List, X } from "@phosphor-icons/react";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries";
 
@@ -12,98 +13,129 @@ export default function Navbar({
   locale: Locale;
   nav: Dictionary["nav"];
 }) {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
+  const menuButton = useRef<HTMLButtonElement>(null);
   const other: Locale = locale === "es" ? "en" : "es";
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   const links = [
+    { href: "#projects", label: nav.projects },
     { href: "#about", label: nav.about },
     { href: "#experience", label: nav.experience },
-    { href: "#projects", label: nav.projects },
     { href: "#skills", label: nav.skills },
     { href: "#contact", label: nav.contact },
   ];
-
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries)
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+      },
+      { rootMargin: "-15% 0px -65% 0px", threshold: 0 },
+    );
+    document
+      .querySelectorAll("main section[id]")
+      .forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    if (!open) return;
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButton.current?.focus();
+      }
+    };
+    const media = window.matchMedia("(min-width: 900px)");
+    const close = () => {
+      if (media.matches) setOpen(false);
+    };
+    document.addEventListener("keydown", escape);
+    media.addEventListener("change", close);
+    return () => {
+      document.removeEventListener("keydown", escape);
+      media.removeEventListener("change", close);
+    };
+  }, [open]);
   return (
-    <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        scrolled
-          ? "border-b border-line bg-ink/80 backdrop-blur-xl"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a
-          href="#top"
-          className="font-[family-name:var(--font-mono-custom)] text-sm font-bold tracking-tight"
-        >
-          <span className="text-accent">&lt;</span>
-          camilo.lopez
-          <span className="text-accent">/&gt;</span>
+    <header className="site-header">
+      <a className="skip-link" href="#main-content">
+        {locale === "es" ? "Saltar al contenido" : "Skip to content"}
+      </a>
+      <nav
+        className="nav-inner page-width"
+        aria-label={
+          locale === "es" ? "Navegación principal" : "Main navigation"
+        }
+      >
+        <a href="#top" className="wordmark" aria-label="cl. Camilo López">
+          cl<span>.</span>
         </a>
-
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="desktop-nav">
           {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="link-underline text-sm text-muted transition-colors hover:text-white"
+                aria-current={active === link.href ? "location" : undefined}
               >
                 {link.label}
               </a>
             </li>
           ))}
         </ul>
-
-        <div className="flex items-center gap-3">
+        <div className="nav-actions">
           <Link
             href={`/${other}`}
-            className="rounded-full border border-line px-3 py-1.5 font-[family-name:var(--font-mono-custom)] text-xs font-semibold uppercase tracking-widest text-muted transition-all hover:border-accent hover:text-accent"
-            aria-label={other === "en" ? "Switch to English" : "Cambiar a español"}
+            hrefLang={other}
+            className="locale-switch"
+            aria-label={
+              other === "en"
+                ? "ES / EN: Switch to English"
+                : "EN / ES: Cambiar a español"
+            }
           >
-            {locale === "es" ? "EN" : "ES"}
+            <span className="current-locale">{locale.toUpperCase()}</span>
+            <span aria-hidden="true">/</span>
+            <span>{other.toUpperCase()}</span>
+            <ArrowUpRight size={14} />
           </Link>
           <button
-            className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
+            ref={menuButton}
+            className="menu-toggle"
             onClick={() => setOpen(!open)}
-            aria-label="Menu"
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            aria-label={
+              locale === "es"
+                ? open
+                  ? "Cerrar menú"
+                  : "Abrir menú"
+                : open
+                  ? "Close menu"
+                  : "Open menu"
+            }
           >
-            <span
-              className={`h-px w-5 bg-white transition-transform ${
-                open ? "translate-y-[3.5px] rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`h-px w-5 bg-white transition-transform ${
-                open ? "-translate-y-[3.5px] -rotate-45" : ""
-              }`}
-            />
+            {open ? <X size={24} /> : <List size={24} />}
           </button>
         </div>
       </nav>
-
-      {open && (
-        <ul className="border-t border-line bg-ink/95 px-6 py-4 backdrop-blur-xl md:hidden">
-          {links.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="block py-3 text-sm text-muted transition-colors hover:text-white"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+      <nav
+        id="mobile-navigation"
+        className="mobile-nav page-width"
+        hidden={!open}
+        aria-label={locale === "es" ? "Navegación móvil" : "Mobile navigation"}
+      >
+        {links.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            onClick={() => setOpen(false)}
+            aria-current={active === link.href ? "location" : undefined}
+          >
+            {link.label}
+            <ArrowUpRight size={20} />
+          </a>
+        ))}
+      </nav>
     </header>
   );
 }

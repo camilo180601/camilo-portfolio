@@ -26,3 +26,8 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# browser QA
+/playwright-report/
+/test-results/
+/.next-production/

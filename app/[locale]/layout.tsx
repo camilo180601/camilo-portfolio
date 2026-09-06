@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { locales, isLocale, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import { profile } from "@/lib/profile";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 import "../globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -86,12 +86,13 @@ export default async function LocaleLayout({
   if (!isLocale(locale)) notFound();
 
   return (
-    <html lang={locale as Locale}>
-      <Analytics />
-      <body
-        className={`${spaceGrotesk.variable} ${jetbrains.variable} antialiased`}
-      >
+    <html
+      lang={locale as Locale}
+      className={`${spaceGrotesk.variable} ${jetbrains.variable}`}
+    >
+      <body className="antialiased">
         {children}
+        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   );

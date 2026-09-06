@@ -1,32 +1,42 @@
 "use client";
-
 import { useEffect, useRef, type ReactNode } from "react";
 
-interface RevealProps {
+export default function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
   children: ReactNode;
   delay?: number;
   className?: string;
-}
-
-export default function Reveal({ children, delay = 0, className = "" }: RevealProps) {
+}) {
   const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const node = ref.current;
-    if (!node) return;
+    if (
+      !node ||
+      !window.IntersectionObserver ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return;
+    // Leave server-rendered and already-visible content readable without waiting for JS.
+    if (node.getBoundingClientRect().top < window.innerHeight) return;
+    node.classList.add("reveal-ready");
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          node.classList.add("in");
+          node.classList.remove("reveal-ready");
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -24px 0px" },
     );
     observer.observe(node);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      node.classList.remove("reveal-ready");
+    };
   }, []);
-
   return (
     <div
       ref={ref}

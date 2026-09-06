@@ -1,6 +1,6 @@
 # Camilo López — Portfolio
 
-Personal portfolio of **Camilo Alejandro López**, Fullstack Developer (Next.js · React · .NET), built to showcase professional experience, featured projects and technical skills — in **Spanish and English**.
+Personal portfolio of **Camilo Alejandro López**, Software Engineer (Angular · .NET · Java · Spring Boot), built to showcase professional experience, featured projects and technical skills — in **Spanish and English**.
 
 ## Stack
 
@@ -33,3 +33,20 @@ product-finder/      Legacy project preserved (vanilla JS product listing tool)
 ## Deploy
 
 Deployed on [Vercel](https://vercel.com). [Go to Link](https://camilo-portfolio-dev.vercel.app/).
+
+
+## Design and browser QA
+
+The visual direction and maintenance rules live in [DESIGN.md](DESIGN.md). The original getdesign.md reference is preserved in `docs/design/getdesign-claude.md`. Taste Skill and its redesign skill were installed in the local Codex skill directory.
+
+The portfolio follows the system light/dark preference and reduced-motion setting. Both CV languages are downloadable from either locale. Long job descriptions remain available through native disclosures.
+
+```bash
+npx playwright install chromium
+npm run build
+npm run test:e2e
+```
+
+Playwright starts a production server on port 3100 if needed and tests Spanish and English on desktop, mobile and dark mode. Checks include actual PDF downloads, responsive overflow, keyboard navigation, language switching and job disclosures. Screenshots and failure traces are written to `test-results/`; the report is in `playwright-report/`.
+
+Production output uses `.next-production/`, while `npm run dev` keeps `.next/`, so browser QA does not conflict with an open development server. Vercel Analytics is enabled on Vercel deployments.
